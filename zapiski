@@ -25,4 +25,8 @@ TAGS
 sftp://pib@192.168.222.71/home/pib/ros/work/src/amsagv/doc/img/graph_tags.pdf
 
 
+Run agv.py
+rosrun amsagv agv.py
+
+
 

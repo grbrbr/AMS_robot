@@ -8,9 +8,6 @@ from math import pi, sin, cos, isnan
 from world import MTAG
 import math
 
-#math.isnan
-
-
 
 tag = None
 

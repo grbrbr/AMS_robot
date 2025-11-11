@@ -1,0 +1,28 @@
+
+
+ssh pib@192.168.222.71
+
+V home/ros/setup -> se požene vsakiič ko odpreš terminal
+export ROS_MASTER_URI="http://192.168.222.176:11311"
+export ROS_IP="192.168.222.187"
+export ROS_NAMESPACE="anthony"
+
+Na robotu
+export ROS_MASTER_URI="http://192.168.222.176:11311"
+export ROS_IP="192.168.222.71"
+export ROS_NAMESPACE="anthony"
+
+
+/home/teamb3/ros/work/src/amsagv/scripts
+
+
+RIZV
+rosrun amsagv set_odom_frame.py
+zazenes s 3 kolesi levo 
+
+
+TAGS
+sftp://pib@192.168.222.71/home/pib/ros/work/src/amsagv/doc/img/graph_tags.pdf
+
+
+

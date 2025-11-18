@@ -8,9 +8,9 @@ from math import pi
 import numpy as np
 
 # naprej
-x_goal = -0.4
+x_goal = -0.2
 # v levo
-y_goal = 0.4
+y_goal = -0.5
 
 # za voddenje v lego 
 phi_goal = 0
@@ -69,6 +69,7 @@ def handleOdometry(msg):
 
     if abs(ef) < 0.03:
       ef = 0.0
+      print("Orientation goal reached.")
     
 
     w = K_phi_goal * ef
@@ -104,10 +105,9 @@ def handleOdometry(msg):
 
     return
 
-
-  # desired velocity
-  v = K * error_d
-
+    # omejitev hitrosti ce gamma error prevelik
+  
+  
   phi_ref = np.arctan2(y_goal - y, x_goal - x)
 
   fi_error = phi_ref - phi
@@ -115,10 +115,20 @@ def handleOdometry(msg):
   
   w = K_phi * fi_error
 
+  if abs(fi_error) > np.deg2rad(90):
+    K_corected = 0
+  else:
+    K_corected = np.cos(fi_error)**2 * K
+
+
+  # desired velocity
+  v = K_corected * error_d
+
   # -----------------------------
   # w  = 2
   # v = 0.0
   # OK
+
 
   
   # control ws
@@ -130,6 +140,8 @@ def handleOdometry(msg):
 
   # control vs
   vs =  ((v**2) + (D * w)**2)**0.5
+
+
 
 
   # limit velocities

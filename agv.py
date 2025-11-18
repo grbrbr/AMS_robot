@@ -78,11 +78,13 @@ with Agv() as robot:
 
       # Encoders
       encLeft, encRight, encHeading = robot.getEncoders()
+      # print('Encoders: left={}, right={}, heading={}'.format(encLeft, encRight, encHeading))
 
       #TODO Implement odometry here ...
       tick_per_m_left = -112043
       tick_per_m_right = 112312
-      gamma_offset_deg = 73.1
+      # gamma_offset_deg = 73.1
+      gamma_offset_rad = 2860
       cpr = 8192
 
       vr = ((encRight - prev_pos_r) / sample_time)/ tick_per_m_right
@@ -94,8 +96,8 @@ with Agv() as robot:
 
       vs = (vr + vl) / 2
 
-      gamma_offset_rad = np.deg2rad(gamma_offset_deg)
-      gamma = -(encHeading/ cpr * 2 * PI - gamma_offset_rad)
+      # gamma_offset_rad = np.deg2rad(gamma_offset_deg)
+      gamma = -((encHeading - gamma_offset_rad)/ cpr * 2 * PI)
       ##TODO: test modulop operator za neg stevila
 
       #fi_odvod = w
@@ -121,7 +123,7 @@ with Agv() as robot:
 
       #print('Encoders: left={}, right={}, heading={}'.format(encLeft, encRight, encHeading))
       #print(f'V: left={vl}, righ={vr}, vs={vs}')
-      print('Odom: x={}, y={}, phi={}, gamma={}'.format(x,y,np.rad2deg(phi),np.rad2deg(gamma)))
+      print('Odom: x={}, y={}, phi={}°, gamma={}°'.format(x,y,np.rad2deg(phi),np.rad2deg(gamma)))
 
 
 

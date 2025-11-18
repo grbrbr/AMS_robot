@@ -8,9 +8,9 @@ from math import pi
 import numpy as np
 
 # naprej
-x_goal = -0.2
+x_goal = -1.2
 # v levo
-y_goal = -0.5
+y_goal = 0.0
 
 # za voddenje v lego 
 phi_goal = 0
